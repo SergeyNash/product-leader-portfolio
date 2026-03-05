@@ -215,6 +215,24 @@ export function Desktop() {
       className="fixed inset-0 crt-effect"
       style={{ background: "var(--win-desktop)" }}
     >
+      {/* Desktop Character */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/sergey.png"
+        alt=""
+        className="absolute select-none pointer-events-none"
+        style={{
+          bottom: "38px",
+          right: "3%",
+          height: "88vh",
+          maxHeight: "calc(100vh - 50px)",
+          width: "auto",
+          zIndex: 0,
+          objectFit: "contain",
+          objectPosition: "bottom",
+        }}
+      />
+
       {/* Desktop Icons */}
       <div className="absolute top-3 left-3 flex flex-col gap-1" style={{ zIndex: 0 }}>
         {ICON_KEYS.map((icon) => (
