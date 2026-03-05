@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useI18n } from "./i18n"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { WindowsLogoIcon, UserIcon, BriefcaseIcon, ChipIcon, MailIcon, NotepadIcon, TerminalIcon } from "./icons"
 
 interface TaskbarWindow {
@@ -28,6 +29,7 @@ const START_ITEMS_KEYS = [
 
 export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: TaskbarProps) {
   const { t, lang } = useI18n()
+  const isMobile = useIsMobile()
   const [showStart, setShowStart] = useState(false)
   const [time, setTime] = useState("")
   const startRef = useRef<HTMLDivElement>(null)
@@ -58,14 +60,17 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
+  const taskbarH = isMobile ? 44 : 36
+  const startMenuBottom = taskbarH
+
   return (
     <>
       {/* Start Menu */}
       {showStart && (
         <div
           ref={startRef}
-          className="fixed bottom-[36px] left-0 win95-window z-[10000] animate-slide-up"
-          style={{ width: 240 }}
+          className="fixed left-0 win95-window z-[10000] animate-slide-up"
+          style={{ width: isMobile ? "100%" : 240, bottom: startMenuBottom }}
         >
           {/* Side banner */}
           <div className="flex">
@@ -81,7 +86,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
               {START_ITEMS_KEYS.map((item) => (
                 <button
                   key={item.id}
-                  className="w-full flex items-center gap-3 px-3 py-2 hover:bg-[#000080] hover:text-white text-[12px] text-left text-black"
+                  className={`w-full flex items-center gap-3 px-3 hover:bg-[#000080] hover:text-white text-left text-black ${isMobile ? "py-3 text-[14px]" : "py-2 text-[12px]"}`}
                   onClick={() => {
                     onStartMenuOpen(item.id)
                     setShowStart(false)
@@ -96,7 +101,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
               {/* Divider */}
               <div className="mx-2 my-1 border-t border-[#808080] border-b border-b-white" />
               <button
-                className="w-full flex items-center gap-3 px-3 py-2 hover:bg-[#000080] hover:text-white text-[12px] text-left text-black"
+                className={`w-full flex items-center gap-3 px-3 hover:bg-[#000080] hover:text-white text-left text-black ${isMobile ? "py-3 text-[14px]" : "py-2 text-[12px]"}`}
                 onClick={() => setShowStart(false)}
               >
                 <span className="w-5 h-5 flex items-center justify-center text-[14px] shrink-0">
@@ -114,31 +119,33 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
       )}
 
       {/* Taskbar */}
-      <div className="fixed bottom-0 left-0 right-0 h-[36px] bg-[#c0c0c0] border-t-2 border-white flex items-center px-1 gap-1 z-[9999]">
+      <div
+        className="fixed bottom-0 left-0 right-0 bg-[#c0c0c0] border-t-2 border-white flex items-center px-1 gap-1 z-[9999]"
+        style={{ height: taskbarH }}
+      >
         {/* Start Button */}
         <button
-          className={`win95-button flex items-center gap-1 px-2 h-[26px] font-bold text-[12px] shrink-0 ${
-            showStart ? "win95-button-pressed" : ""
-          }`}
+          className={`win95-button flex items-center gap-1 px-2 font-bold shrink-0 ${showStart ? "win95-button-pressed" : ""} ${isMobile ? "h-[34px] text-[13px]" : "h-[26px] text-[12px]"}`}
           onClick={() => setShowStart(!showStart)}
         >
-          <WindowsLogoIcon size={16} />
+          <WindowsLogoIcon size={isMobile ? 18 : 16} />
           <span>Start</span>
         </button>
 
         {/* Divider */}
-        <div className="w-px h-[24px] bg-[#808080] mx-0.5 shrink-0" />
+        <div className="w-px bg-[#808080] mx-0.5 shrink-0" style={{ height: taskbarH - 12 }} />
 
         {/* Window buttons */}
         <div className="flex-1 flex gap-0.5 overflow-x-auto min-w-0">
           {openWindows.map((win) => (
             <button
               key={win.id}
-              className={`flex items-center gap-1 px-2 h-[24px] text-[11px] truncate min-w-[80px] max-w-[160px] ${
+              className={`flex items-center gap-1 px-2 text-[11px] truncate min-w-[80px] max-w-[160px] ${
                 win.isActive
                   ? "win95-button-pressed bg-white font-bold"
                   : "win95-button"
               }`}
+              style={{ height: isMobile ? 34 : 24 }}
               onClick={() => onWindowClick(win.id)}
             >
               <span className="truncate">{win.title}</span>
@@ -147,7 +154,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
         </div>
 
         {/* System Tray */}
-        <div className="win95-inset flex items-center gap-2 px-2 h-[24px] shrink-0">
+        <div className="win95-inset flex items-center gap-2 px-2 shrink-0" style={{ height: isMobile ? 34 : 24 }}>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <circle cx="7" cy="7" r="5" fill="#FFD700" />
             <circle cx="7" cy="7" r="4" fill="#FFFF00" />

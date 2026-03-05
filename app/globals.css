@@ -247,3 +247,33 @@
   color: white;
   outline: 1px dotted white;
 }
+
+/* Mobile: larger touch targets, tap highlight */
+@media (max-width: 767px) {
+  .desktop-icon {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .desktop-icon:active .icon-label {
+    background: var(--win-title);
+    color: white;
+    outline: 1px dotted white;
+  }
+
+  .win95-button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent text selection on touch */
+  .win95-title-bar {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Smoother scrolling in window content on touch */
+  .win95-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+}

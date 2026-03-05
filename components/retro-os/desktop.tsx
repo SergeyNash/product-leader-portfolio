@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react"
 import { useI18n } from "./i18n"
+import { useIsMobile } from "@/hooks/use-mobile"
 import { DesktopIcon } from "./desktop-icon"
 import { Window } from "./window"
 import { Taskbar } from "./taskbar"
@@ -136,6 +137,7 @@ function getWindowIcon(id: string) {
 
 export function Desktop() {
   const { t, lang, toggleLang } = useI18n()
+  const isMobile = useIsMobile()
   const [windows, setWindows] = useState<WindowState[]>(INITIAL_WINDOWS)
   const [maxZ, setMaxZ] = useState(10)
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null)
@@ -215,12 +217,12 @@ export function Desktop() {
       className="fixed inset-0 crt-effect"
       style={{ background: "var(--win-desktop)" }}
     >
-      {/* Desktop Character */}
+      {/* Desktop Character — hidden on mobile */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/sergey-1.png"
         alt=""
-        className="absolute select-none pointer-events-none"
+        className="absolute select-none pointer-events-none hidden md:block"
         style={{
           bottom: "38px",
           left: "50%",
@@ -232,7 +234,14 @@ export function Desktop() {
       />
 
       {/* Desktop Icons */}
-      <div className="absolute top-3 left-3 flex flex-col gap-1" style={{ zIndex: 0 }}>
+      <div
+        className={
+          isMobile
+            ? "absolute top-3 left-0 right-0 flex flex-wrap justify-start px-1 gap-0.5"
+            : "absolute top-3 left-3 flex flex-col gap-1"
+        }
+        style={{ zIndex: 1 }}
+      >
         {ICON_KEYS.map((icon) => (
           <DesktopIcon
             key={icon.id}
@@ -243,10 +252,17 @@ export function Desktop() {
         ))}
       </div>
 
-      {/* Language Toggle - top right corner of desktop */}
+      {/* Language Toggle */}
       <button
-        className="win95-button absolute top-3 right-3 flex items-center gap-1.5 px-3 h-[28px] text-[12px] font-bold text-black"
-        style={{ zIndex: 1 }}
+        className="win95-button absolute flex items-center gap-1.5 px-3 font-bold text-black"
+        style={{
+          zIndex: 1,
+          top: isMobile ? "auto" : "12px",
+          bottom: isMobile ? "52px" : "auto",
+          right: "12px",
+          height: isMobile ? "32px" : "28px",
+          fontSize: isMobile ? "13px" : "12px",
+        }}
         onClick={toggleLang}
         aria-label="Toggle language"
       >
@@ -258,8 +274,8 @@ export function Desktop() {
         <span>{lang === "ru" ? "EN" : "RU"}</span>
       </button>
 
-      {/* Watermark */}
-      <div className="absolute bottom-12 right-4 text-white/20 text-[11px] select-none" style={{ zIndex: 0 }}>
+      {/* Watermark — hidden on mobile */}
+      <div className="absolute bottom-12 right-4 text-white/20 text-[11px] select-none hidden md:block" style={{ zIndex: 0 }}>
         {t("watermark")}
       </div>
 
