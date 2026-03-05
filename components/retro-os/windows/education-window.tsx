@@ -1,21 +1,10 @@
 "use client"
 
-const EDUCATION = [
-  {
-    institution: 'NIU "MEI" (Moscow Power Engineering Institute)',
-    degree: "Radio Engineering, Specialist",
-    year: "2009",
-    icon: "mortarboard",
-  },
-]
-
-const CERTIFICATIONS = [
-  { name: "ChatGPT Prompt Engineering for Developers", issuer: "OpenAI", year: "2025" },
-  { name: "Build AI Apps with MCP Server", issuer: "OpenAI", year: "2025" },
-  { name: "Data-driven Product Management Simulator", issuer: "Go Practice", year: "2022" },
-]
+import { useI18n } from "../i18n"
 
 export function EducationWindow() {
+  const { t } = useI18n()
+
   return (
     <div className="p-4 text-[11px] text-black">
       {/* Terminal Header */}
@@ -25,30 +14,32 @@ export function EducationWindow() {
 
       {/* Education */}
       <div className="mb-4">
-        <p className="font-bold text-[12px] text-[#000080] mb-2">Education:</p>
-        {EDUCATION.map((edu) => (
-          <div key={edu.institution} className="win95-inset p-2 bg-white mb-2">
-            <div className="flex items-start gap-2">
-              <span className="text-[16px]">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <polygon points="8,1 1,6 8,11 15,6" fill="#000080" />
-                  <rect x="3" y="7" width="10" height="6" fill="#000080" />
-                  <rect x="4" y="8" width="8" height="4" fill="#4169E1" />
-                </svg>
-              </span>
-              <div>
-                <p className="font-bold">{edu.institution}</p>
-                <p className="text-[#808080]">{edu.degree} ({edu.year})</p>
-              </div>
+        <p className="font-bold text-[12px] text-[#000080] mb-2">{t("edu.title")}</p>
+        <div className="win95-inset p-2 bg-white mb-2">
+          <div className="flex items-start gap-2">
+            <span className="text-[16px]">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <polygon points="8,1 1,6 8,11 15,6" fill="#000080" />
+                <rect x="3" y="7" width="10" height="6" fill="#000080" />
+                <rect x="4" y="8" width="8" height="4" fill="#4169E1" />
+              </svg>
+            </span>
+            <div>
+              <p className="font-bold">{t("edu.mei")}</p>
+              <p className="text-[#808080]">{t("edu.degree")} (2009)</p>
             </div>
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Certifications */}
       <div className="mb-4">
-        <p className="font-bold text-[12px] text-[#000080] mb-2">Certifications:</p>
-        {CERTIFICATIONS.map((cert) => (
+        <p className="font-bold text-[12px] text-[#000080] mb-2">{t("edu.certs")}</p>
+        {[
+          { name: "ChatGPT Prompt Engineering for Developers", issuer: "OpenAI", year: "2025" },
+          { name: "Build AI Apps with MCP Server", issuer: "OpenAI", year: "2025" },
+          { name: "Data-driven Product Management Simulator", issuer: "Go Practice", year: "2022" },
+        ].map((cert) => (
           <div key={cert.name} className="flex items-start gap-2 mb-2 p-2 bg-[#FFFFCC] win95-inset">
             <span className="text-[#FFD700] shrink-0">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -68,11 +59,11 @@ export function EducationWindow() {
 
       {/* Languages */}
       <div>
-        <p className="font-bold text-[12px] text-[#000080] mb-2">Languages:</p>
+        <p className="font-bold text-[12px] text-[#000080] mb-2">{t("edu.languages")}</p>
         <div className="flex gap-4">
           <div className="win95-inset p-2 bg-white flex-1 text-center">
-            <p className="font-bold text-[13px]">Russian</p>
-            <p className="text-[10px] text-[#808080]">Native</p>
+            <p className="font-bold text-[13px]">{t("edu.russian")}</p>
+            <p className="text-[10px] text-[#808080]">{t("edu.native")}</p>
             <div className="flex justify-center gap-0.5 mt-1">
               {Array.from({ length: 5 }).map((_, i) => (
                 <div key={i} className="w-2.5 h-2.5 bg-[#008000]" />
@@ -80,8 +71,8 @@ export function EducationWindow() {
             </div>
           </div>
           <div className="win95-inset p-2 bg-white flex-1 text-center">
-            <p className="font-bold text-[13px]">English</p>
-            <p className="text-[10px] text-[#808080]">C2 - Fluent</p>
+            <p className="font-bold text-[13px]">{t("edu.english")}</p>
+            <p className="text-[10px] text-[#808080]">{t("edu.fluent")}</p>
             <div className="flex justify-center gap-0.5 mt-1">
               {Array.from({ length: 5 }).map((_, i) => (
                 <div key={i} className="w-2.5 h-2.5 bg-[#000080]" />

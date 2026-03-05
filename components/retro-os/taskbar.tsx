@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useI18n } from "./i18n"
 import { WindowsLogoIcon, UserIcon, BriefcaseIcon, ChipIcon, MailIcon, NotepadIcon, TerminalIcon } from "./icons"
 
 interface TaskbarWindow {
@@ -16,16 +17,17 @@ interface TaskbarProps {
   onStartMenuOpen: (id: string) => void
 }
 
-const START_MENU_ITEMS = [
-  { id: "about", label: "About Me", icon: <UserIcon size={20} /> },
-  { id: "career", label: "Career History", icon: <BriefcaseIcon size={20} /> },
-  { id: "skills", label: "Skills Matrix", icon: <ChipIcon size={20} /> },
-  { id: "education", label: "Education", icon: <NotepadIcon size={20} /> },
-  { id: "contact", label: "Contact", icon: <MailIcon size={20} /> },
-  { id: "terminal", label: "Command Prompt", icon: <TerminalIcon size={20} /> },
+const START_ITEMS_KEYS = [
+  { id: "about", labelKey: "start.about", icon: <UserIcon size={20} /> },
+  { id: "career", labelKey: "start.career", icon: <BriefcaseIcon size={20} /> },
+  { id: "skills", labelKey: "start.skills", icon: <ChipIcon size={20} /> },
+  { id: "education", labelKey: "start.education", icon: <NotepadIcon size={20} /> },
+  { id: "contact", labelKey: "start.contact", icon: <MailIcon size={20} /> },
+  { id: "terminal", labelKey: "start.terminal", icon: <TerminalIcon size={20} /> },
 ]
 
 export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: TaskbarProps) {
+  const { t, lang } = useI18n()
   const [showStart, setShowStart] = useState(false)
   const [time, setTime] = useState("")
   const startRef = useRef<HTMLDivElement>(null)
@@ -34,17 +36,17 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
     const updateTime = () => {
       const now = new Date()
       setTime(
-        now.toLocaleTimeString("en-US", {
+        now.toLocaleTimeString(lang === "ru" ? "ru-RU" : "en-US", {
           hour: "2-digit",
           minute: "2-digit",
-          hour12: true,
+          hour12: lang !== "ru",
         })
       )
     }
     updateTime()
     const interval = setInterval(updateTime, 1000)
     return () => clearInterval(interval)
-  }, [])
+  }, [lang])
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -63,7 +65,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
         <div
           ref={startRef}
           className="fixed bottom-[36px] left-0 win95-window z-[10000] animate-slide-up"
-          style={{ width: 220 }}
+          style={{ width: 240 }}
         >
           {/* Side banner */}
           <div className="flex">
@@ -76,7 +78,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
               </span>
             </div>
             <div className="flex-1 bg-[#c0c0c0]">
-              {START_MENU_ITEMS.map((item, i) => (
+              {START_ITEMS_KEYS.map((item) => (
                 <button
                   key={item.id}
                   className="w-full flex items-center gap-3 px-3 py-2 hover:bg-[#000080] hover:text-white text-[12px] text-left text-black"
@@ -88,7 +90,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
                   <span className="w-5 h-5 flex items-center justify-center shrink-0">
                     {item.icon}
                   </span>
-                  {item.label}
+                  {t(item.labelKey)}
                 </button>
               ))}
               {/* Divider */}
@@ -104,7 +106,7 @@ export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: Taskbar
                     <circle cx="10" cy="4" r="3" fill="#ff0000" />
                   </svg>
                 </span>
-                Shut Down...
+                {t("start.shutdown")}
               </button>
             </div>
           </div>

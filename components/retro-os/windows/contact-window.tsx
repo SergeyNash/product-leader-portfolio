@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { useI18n } from "../i18n"
 
 export function ContactWindow() {
+  const { t } = useI18n()
   const [message, setMessage] = useState("")
   const [sent, setSent] = useState(false)
 
@@ -10,17 +12,17 @@ export function ContactWindow() {
     <div className="p-4 text-[11px] text-black">
       <div className="mb-4 p-2 bg-black text-[#00ff00] font-mono">
         <p>Microsoft Outlook Express v95</p>
-        <p className="text-[#808080]">{">"} compose new message...</p>
+        <p className="text-[#808080]">{t("contact.compose")}</p>
       </div>
 
       <div className="mb-3">
         <div className="flex items-center gap-2 mb-2 pb-1 border-b border-[#c0c0c0]">
-          <span className="font-bold w-12 text-[#808080]">To:</span>
+          <span className="font-bold w-14 text-[#808080]">{t("contact.to")}</span>
           <span className="text-[#000080]">sergey.sinyakov [at] product.leader</span>
         </div>
         <div className="flex items-center gap-2 mb-2 pb-1 border-b border-[#c0c0c0]">
-          <span className="font-bold w-12 text-[#808080]">Subj:</span>
-          <span>Product Leadership Opportunity</span>
+          <span className="font-bold w-14 text-[#808080]">{t("contact.subj")}</span>
+          <span>{t("contact.subject")}</span>
         </div>
       </div>
 
@@ -67,13 +69,13 @@ export function ContactWindow() {
       {/* Quick Message */}
       <div className="win95-inset p-2 bg-white">
         <label className="block text-[10px] font-bold text-[#000080] mb-1">
-          Quick Message:
+          {t("contact.quickmsg")}
         </label>
         {sent ? (
           <div className="p-3 text-center">
-            <p className="text-[#008000] font-bold text-[13px]">Message Sent!</p>
+            <p className="text-[#008000] font-bold text-[13px]">{t("contact.sent")}</p>
             <p className="text-[10px] text-[#808080] mt-1">
-              (Just kidding, this is a demo. Use the links above!)
+              {t("contact.joke")}
             </p>
             <button
               className="win95-button mt-2 text-[11px]"
@@ -82,14 +84,14 @@ export function ContactWindow() {
                 setMessage("")
               }}
             >
-              New Message
+              {t("contact.newmsg")}
             </button>
           </div>
         ) : (
           <>
             <textarea
               className="w-full h-16 p-1 text-[11px] border border-[#808080] bg-white resize-none focus:outline-none focus:border-[#000080]"
-              placeholder="Type your message here..."
+              placeholder={t("contact.placeholder")}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
@@ -99,13 +101,13 @@ export function ContactWindow() {
                 onClick={() => setSent(true)}
                 disabled={!message.trim()}
               >
-                Send
+                {t("contact.send")}
               </button>
               <button
                 className="win95-button text-[11px]"
                 onClick={() => setMessage("")}
               >
-                Clear
+                {t("contact.clear")}
               </button>
             </div>
           </>
