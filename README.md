@@ -1,35 +1,225 @@
-# product-leader-portfolio
+# ProductOS 95 — Portfolio Website
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Интерактивный сайт-визитка **Сергея Синякова** (Head of Product / CPO), стилизованный под операционную систему **Windows 95**. Вместо классического лендинга — полноценный ретро-рабочий стол прямо в браузере.
 
-## Built with v0
+**Live:** [https://product-leader-portfolio.vercel.app](https://product-leader-portfolio.vercel.app)
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+---
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_mxw8fsKzPkpGLDhlc0V86NCVacov)
+## Концепция
 
-## Getting Started
+Нестандартный подход к портфолио: вместо скучного резюме пользователь видит загрузочный экран «ProductOS 95», а затем попадает на рабочий стол в стиле Windows 95. Каждый раздел портфолио (опыт, навыки, образование, контакты) — отдельное окно, которое можно открыть, перетащить, свернуть и закрыть. Есть терминал с командной строкой.
 
-First, run the development server:
+Это намеренная метафора: продакт-менеджер — это «операционная система» продуктовой команды.
+
+---
+
+## Стек технологий
+
+| Слой | Технология |
+|------|-----------|
+| Фреймворк | **Next.js 16** (App Router) |
+| Язык | **TypeScript 5.7** |
+| Стили | **Tailwind CSS v4** + кастомный дизайн-токен Win95 |
+| UI-примитивы | **Radix UI** (полный набор) через **shadcn/ui** |
+| Шрифт | `W95FA` — подлинный пиксельный шрифт Windows 95 (woff2) |
+| Аналитика | `@vercel/analytics` |
+| Деплой | **Vercel** (авто-деплой из ветки `main`) |
+| Разработка | [v0.dev](https://v0.app/chat/projects/prj_mxw8fsKzPkpGLDhlc0V86NCVacov) |
+
+---
+
+## Структура проекта
+
+```
+product-leader-portfolio/
+├── app/
+│   ├── globals.css              # Глобальные стили + дизайн-система Win95
+│   ├── layout.tsx               # Корневой layout (метаданные, аналитика)
+│   └── page.tsx                 # Корневая страница: BootScreen → Desktop
+│
+├── components/
+│   ├── retro-os/                # Ядро симуляции ОС
+│   │   ├── boot-screen.tsx      # Анимированная загрузочная последовательность
+│   │   ├── desktop.tsx          # Рабочий стол (иконки, окна, taskbar)
+│   │   ├── desktop-icon.tsx     # Кликабельная иконка рабочего стола
+│   │   ├── i18n.tsx             # Контекст EN/RU + все переводы (~60 ключей)
+│   │   ├── icons.tsx            # Кастомные SVG-иконки в пиксельном стиле
+│   │   ├── taskbar.tsx          # Панель задач + меню «Пуск»
+│   │   ├── window.tsx           # Оболочка окна (перетаскивание, ресайз, Z-порядок)
+│   │   └── windows/
+│   │       ├── about-window.tsx      # «Обо мне»
+│   │       ├── career-window.tsx     # История карьеры (в стиле Explorer)
+│   │       ├── contact-window.tsx    # Контакты (в стиле Outlook Express)
+│   │       ├── education-window.tsx  # Образование и сертификаты
+│   │       ├── skills-window.tsx     # Матрица навыков с анимированными барами
+│   │       └── terminal-window.tsx   # Функциональный CLI-терминал
+│   │
+│   ├── theme-provider.tsx       # next-themes провайдер
+│   └── ui/                      # shadcn/ui компоненты (40+ штук)
+│
+├── hooks/
+│   ├── use-mobile.ts
+│   └── use-toast.ts
+│
+├── lib/
+│   └── utils.ts                 # cn() утилита (clsx + tailwind-merge)
+│
+├── public/
+│   └── icon.svg
+│
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── tsconfig.json
+└── components.json              # shadcn/ui конфиг
+```
+
+---
+
+## Как работает приложение
+
+### Поток запуска
+
+```
+app/page.tsx
+  └─ I18nProvider (контекст EN/RU)
+       └─ BootScreen  →  (по завершении)  →  Desktop
+```
+
+### 1. Загрузочный экран (`boot-screen.tsx`)
+
+Анимированный псевдо-BIOS на чёрном фоне с зелёным текстом. Строки появляются последовательно с рандомными задержками. Сообщения тематизированы под продуктовый менеджмент:
+- `CPU: ProductCore(TM) i18-CPO @ 18 Years Experience`
+- `Loading JTBD Framework.......... OK`
+- `Initializing Stakeholder Management... OK`
+
+После заполнения прогресс-бара экран переходит к рабочему столу.
+
+### 2. Рабочий стол (`desktop.tsx`)
+
+Windows 95-стиль с бирюзовым фоном (`#008080`):
+- **6 иконок** (двойной клик — открывает окно): Обо мне, Карьера, Навыки, Образование, Контакты, Терминал
+- **Переключатель языка** EN/RU в правом верхнем углу
+- **Панель задач** с кнопкой «Пуск», кнопками открытых окон и часами в трее
+- **Оверлей CRT-строк** через CSS `::after`
+- **Менеджмент окон**: открыть, закрыть, свернуть, развернуть, перетащить, управление Z-порядком
+
+### 3. Оболочка окна (`window.tsx`)
+
+Каждое окно — перетаскиваемый фрейм Win95:
+- Градиентная строка заголовка (активное: синее, неактивное: серое)
+- Меню File / Edit / View / Help
+- Прокручиваемое содержимое со скроллбарами Win95
+- Статус-бар «Ready»
+
+---
+
+## Содержимое окон (портфолио)
+
+### Обо мне
+Аватар, имя, должность, локация, краткое summary. 5 ключевых компетенций: Product Leadership, Market Intelligence, B2C/B2B2C, Team Management, Technical Depth. Системная статистика: «system uptime: 18 years».
+
+### Карьера (стиль Explorer)
+Левая панель: список мест работы (дерево). Правая панель: детали позиции.
+
+| Компания | Период | Роль |
+|----------|--------|------|
+| Positive Technologies | авг 2023 — н.в. | Head of Application Security Products |
+| Ингосстрах | дек 2021 — авг 2023 | CPO Digital Channels |
+| МНПП «Антракс» | окт 2019 — дек 2021 | Head of Dev / PO (Industrial IoT) |
+| Ранняя карьера | 2007–2019 | SCADA, metro systems, radar software |
+
+### Навыки (вкладки)
+4 вкладки: Strategy / Analytics / Management / Technology. Каждая — анимированные прогресс-бары (~6 навыков). Цвета: зелёный (Expert 90%+), жёлтый (Advanced 70%+), синий (Proficient).
+
+### Образование
+- НИУ «МЭИ», Радиотехника, 2009
+- 3 сертификата: OpenAI Prompt Engineering (2025), MCP Server (2025), Go Practice (2022)
+- Языки: Русский (native), English (C2)
+
+### Контакты (стиль Outlook Express)
+Поля `To:` / `Subj:` в стиле email-клиента. 3 карточки: Telegram `@sergeysinyakov`, LinkedIn, Email `contact@sinyakov.pro`. Шуточная форма «быстрого сообщения».
+
+### Терминал
+Полнофункциональный CLI. Поддерживаемые команды:
+
+```
+help     — список команд
+about    — краткое summary
+skills   — список навыков
+career   — история карьеры
+contact  — контактная информация
+whoami   — имя и должность
+ver      — версия ProductOS
+cls      — очистить терминал
+exit     — закрыть терминал
+```
+
+---
+
+## Интернационализация (`i18n.tsx`)
+
+Кастомный React Context с ~60 ключами перевода. Язык по умолчанию — **русский**. Кнопка с иконкой глобуса на рабочем столе переключает EN/RU. Все окна, загрузочные сообщения, панель задач и вывод терминала реагируют на смену языка.
+
+---
+
+## Дизайн-система (`globals.css`)
+
+Полная система дизайн-токенов Windows 95:
+
+```css
+--win-bg: #c0c0c0        /* фон окна */
+--win-title: #000080     /* заголовок (синий) */
+--win-desktop: #008080   /* рабочий стол (бирюзовый) */
+```
+
+Утилитарные классы:
+- `.win95-button` — 3D-эффект нажатой кнопки через border
+- `.win95-window` — рамка окна
+- `.win95-title-bar` — строка заголовка
+- `.win95-inset` — утопленный блок
+- `.win95-scrollbar` — кастомный скроллбар
+
+Анимации: `boot-flicker`, `blink-cursor`, `slide-up` (меню Пуск), `progress-blocks`.
+
+---
+
+## Локальная разработка
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Установка зависимостей
+pnpm install
+
+# Запуск dev-сервера
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открыть [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Сборка для production
+pnpm build
 
-## Learn More
+# Запуск production-сервера
+pnpm start
+```
 
-To learn more, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+## Деплой
 
-<a href="https://v0.app/chat/api/kiro/clone/SergeyNash/product-leader-portfolio" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+Проект задеплоен на **Vercel**. Каждый merge в ветку `main` автоматически запускает деплой.
+
+Для продолжения разработки через AI-интерфейс: [открыть в v0 →](https://v0.app/chat/projects/prj_mxw8fsKzPkpGLDhlc0V86NCVacov)
+
+---
+
+## Архитектурные решения
+
+- **Нет бэкенда и БД** — весь контент захардкожен в React-компонентах на EN и RU
+- **Нет внешних иконочных библиотек** для основного UI — кастомные SVG-иконки в пиксельном стиле
+- **TypeScript strict mode** — строгая типизация по всему проекту
+- **`"use client"` везде** — всё интерактивно, нет серверных компонентов с данными
+- **`@/*` path alias** — указывает на корень репозитория
+- **TypeScript-ошибки в билде игнорируются** (`next.config.mjs`) — для совместимости с v0-генерацией
