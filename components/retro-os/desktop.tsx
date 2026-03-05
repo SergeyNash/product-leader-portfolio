@@ -218,18 +218,16 @@ export function Desktop() {
       {/* Desktop Character */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/sergey.png"
+        src="/sergey-1.png"
         alt=""
         className="absolute select-none pointer-events-none"
         style={{
           bottom: "38px",
-          right: "3%",
-          height: "88vh",
-          maxHeight: "calc(100vh - 50px)",
+          left: "50%",
+          transform: "translateX(-25%)",
+          height: "calc(100vh - 38px)",
           width: "auto",
           zIndex: 0,
-          objectFit: "contain",
-          objectPosition: "bottom",
         }}
       />
 
