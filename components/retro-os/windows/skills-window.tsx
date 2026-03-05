@@ -68,20 +68,22 @@ function SkillBar({ name, level }: { name: string; level: number }) {
     return () => clearTimeout(timer)
   }, [level])
 
-  const blocks = Math.floor(width / 5)
+  const totalBlocks = 20
+  const filledBlocks = Math.round((width / 100) * totalBlocks)
+  const color = level >= 90 ? "#00FF00" : level >= 70 ? "#FFFF00" : "#00BFFF"
 
   return (
     <div className="flex items-center gap-2 text-[11px]">
-      <span className="w-[140px] shrink-0 truncate">{name}</span>
-      <div className="flex-1 h-3 bg-[#404040] win95-inset flex items-center px-px">
-        <div className="flex gap-px h-2" style={{ width: `${width}%` }}>
-          {Array.from({ length: blocks }).map((_, i) => (
+      <span className="w-[160px] shrink-0 truncate">{name}</span>
+      <div className="flex-1 h-4 bg-[#404040] win95-inset flex items-center px-[2px]">
+        <div className="flex gap-[2px] h-[10px] w-full">
+          {Array.from({ length: totalBlocks }).map((_, i) => (
             <div
               key={i}
-              className="h-full w-1.5"
+              className="h-full flex-1"
               style={{
-                backgroundColor: width >= 90 ? "#00FF00" : width >= 70 ? "#FFFF00" : "#00BFFF",
-                transition: `opacity ${i * 30}ms ease`,
+                backgroundColor: i < filledBlocks ? color : "transparent",
+                transition: `background-color ${i * 40}ms ease`,
               }}
             />
           ))}
