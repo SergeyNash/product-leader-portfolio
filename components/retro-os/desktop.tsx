@@ -211,6 +211,7 @@ export function Desktop() {
   )
 
   const openWindows = windows.filter((w) => w.isOpen)
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
   return (
     <div
@@ -218,10 +219,9 @@ export function Desktop() {
       style={{ background: "var(--win-desktop)" }}
     >
       {/* Desktop Character — hidden on mobile */}
-      {!isMobile && (
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/sergey-1.png`}
+      {!isMobile && <img
+        src={basePath + "/sergey-1.png"}
         alt=""
         className="absolute select-none pointer-events-none"
         style={{
@@ -232,8 +232,7 @@ export function Desktop() {
           width: "auto",
           zIndex: 0,
         }}
-      />
-      )}
+      />}
 
       {/* Desktop Icons */}
       <div
