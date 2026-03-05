@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback } from "react"
+import { useI18n } from "./i18n"
 import { DesktopIcon } from "./desktop-icon"
 import { Window } from "./window"
 import { Taskbar } from "./taskbar"
@@ -21,7 +22,7 @@ import { TerminalWindow } from "./windows/terminal-window"
 
 interface WindowState {
   id: string
-  title: string
+  titleKey: string
   isOpen: boolean
   isMinimized: boolean
   zIndex: number
@@ -32,7 +33,7 @@ interface WindowState {
 const INITIAL_WINDOWS: WindowState[] = [
   {
     id: "about",
-    title: "About - Sergey Sinyakov",
+    titleKey: "win.about",
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
@@ -41,7 +42,7 @@ const INITIAL_WINDOWS: WindowState[] = [
   },
   {
     id: "career",
-    title: "Career Explorer",
+    titleKey: "win.career",
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
@@ -50,7 +51,7 @@ const INITIAL_WINDOWS: WindowState[] = [
   },
   {
     id: "skills",
-    title: "Skills Matrix v2.0",
+    titleKey: "win.skills",
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
@@ -59,7 +60,7 @@ const INITIAL_WINDOWS: WindowState[] = [
   },
   {
     id: "education",
-    title: "Education & Certificates",
+    titleKey: "win.education",
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
@@ -68,7 +69,7 @@ const INITIAL_WINDOWS: WindowState[] = [
   },
   {
     id: "contact",
-    title: "Contact - Outlook Express",
+    titleKey: "win.contact",
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
@@ -77,7 +78,7 @@ const INITIAL_WINDOWS: WindowState[] = [
   },
   {
     id: "terminal",
-    title: "Command Prompt",
+    titleKey: "win.terminal",
     isOpen: false,
     isMinimized: false,
     zIndex: 1,
@@ -86,13 +87,13 @@ const INITIAL_WINDOWS: WindowState[] = [
   },
 ]
 
-const DESKTOP_ICONS = [
-  { id: "about", label: "About Me", icon: <UserIcon /> },
-  { id: "career", label: "Career", icon: <BriefcaseIcon /> },
-  { id: "skills", label: "Skills", icon: <ChipIcon /> },
-  { id: "education", label: "Education", icon: <NotepadIcon /> },
-  { id: "contact", label: "Contact", icon: <MailIcon /> },
-  { id: "terminal", label: "Terminal", icon: <TerminalIcon /> },
+const ICON_KEYS = [
+  { id: "about", labelKey: "icon.about", icon: <UserIcon /> },
+  { id: "career", labelKey: "icon.career", icon: <BriefcaseIcon /> },
+  { id: "skills", labelKey: "icon.skills", icon: <ChipIcon /> },
+  { id: "education", labelKey: "icon.education", icon: <NotepadIcon /> },
+  { id: "contact", labelKey: "icon.contact", icon: <MailIcon /> },
+  { id: "terminal", labelKey: "icon.terminal", icon: <TerminalIcon /> },
 ]
 
 function getWindowContent(id: string) {
@@ -134,6 +135,7 @@ function getWindowIcon(id: string) {
 }
 
 export function Desktop() {
+  const { t, lang, toggleLang } = useI18n()
   const [windows, setWindows] = useState<WindowState[]>(INITIAL_WINDOWS)
   const [maxZ, setMaxZ] = useState(10)
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null)
@@ -215,19 +217,34 @@ export function Desktop() {
     >
       {/* Desktop Icons */}
       <div className="absolute top-3 left-3 flex flex-col gap-1" style={{ zIndex: 0 }}>
-        {DESKTOP_ICONS.map((icon) => (
+        {ICON_KEYS.map((icon) => (
           <DesktopIcon
             key={icon.id}
-            label={icon.label}
+            label={t(icon.labelKey)}
             icon={icon.icon}
             onDoubleClick={() => openWindow(icon.id)}
           />
         ))}
       </div>
 
+      {/* Language Toggle - top right corner of desktop */}
+      <button
+        className="win95-button absolute top-3 right-3 flex items-center gap-1.5 px-3 h-[28px] text-[12px] font-bold text-black"
+        style={{ zIndex: 1 }}
+        onClick={toggleLang}
+        aria-label="Toggle language"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="6" stroke="#000080" strokeWidth="1.5" fill="none" />
+          <ellipse cx="7" cy="7" rx="3" ry="6" stroke="#000080" strokeWidth="1" fill="none" />
+          <line x1="1" y1="7" x2="13" y2="7" stroke="#000080" strokeWidth="1" />
+        </svg>
+        <span>{lang === "ru" ? "EN" : "RU"}</span>
+      </button>
+
       {/* Watermark */}
       <div className="absolute bottom-12 right-4 text-white/20 text-[11px] select-none" style={{ zIndex: 0 }}>
-        ProductOS 95 Build 2025.03
+        {t("watermark")}
       </div>
 
       {/* Windows */}
@@ -236,7 +253,7 @@ export function Desktop() {
           <Window
             key={win.id}
             id={win.id}
-            title={win.title}
+            title={t(win.titleKey)}
             icon={getWindowIcon(win.id)}
             defaultPosition={win.defaultPosition}
             defaultSize={win.defaultSize}
@@ -256,7 +273,7 @@ export function Desktop() {
       <Taskbar
         openWindows={openWindows.map((w) => ({
           id: w.id,
-          title: w.title,
+          title: t(w.titleKey),
           isActive: activeWindowId === w.id,
           isMinimized: w.isMinimized,
         }))}

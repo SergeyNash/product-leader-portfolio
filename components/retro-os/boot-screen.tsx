@@ -1,25 +1,26 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useI18n } from "./i18n"
 
-const BOOT_LINES = [
-  "BIOS v4.51PG - Product Edition",
-  "Copyright (C) 2007-2025, Sinyakov Systems Inc.",
+const BOOT_KEYS = [
+  "boot.bios",
+  "boot.copyright",
   "",
-  "CPU: ProductCore(TM) i18-CPO @ 18 Years Experience",
-  "RAM: 256MB Strategic Thinking... OK",
-  "HDD: 1TB Enterprise Solutions... Detected",
+  "boot.cpu",
+  "boot.ram",
+  "boot.hdd",
   "",
-  "Initializing Product Management OS v2.0...",
-  "Loading JTBD Framework.......... OK",
-  "Loading CustDev Module.......... OK",
-  "Loading OKR Engine.............. OK",
-  "Loading Agile/SAFe Kernel....... OK",
-  "Loading LLM Integration......... OK",
-  "Loading B2B/Enterprise Stack.... OK",
+  "boot.init",
+  "boot.jtbd",
+  "boot.custdev",
+  "boot.okr",
+  "boot.agile",
+  "boot.llm",
+  "boot.b2b",
   "",
-  "All systems operational.",
-  "Starting ProductOS 95...",
+  "boot.ok",
+  "boot.start",
 ]
 
 interface BootScreenProps {
@@ -27,13 +28,14 @@ interface BootScreenProps {
 }
 
 export function BootScreen({ onBootComplete }: BootScreenProps) {
+  const { t } = useI18n()
   const [visibleLines, setVisibleLines] = useState<number>(0)
   const [showProgress, setShowProgress] = useState(false)
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    if (visibleLines < BOOT_LINES.length) {
-      const delay = BOOT_LINES[visibleLines] === "" ? 100 : Math.random() * 80 + 40
+    if (visibleLines < BOOT_KEYS.length) {
+      const delay = BOOT_KEYS[visibleLines] === "" ? 100 : Math.random() * 80 + 40
       const timer = setTimeout(() => {
         setVisibleLines((prev) => prev + 1)
       }, delay)
@@ -57,15 +59,17 @@ export function BootScreen({ onBootComplete }: BootScreenProps) {
     }
   }, [showProgress, progress, onBootComplete])
 
+  const bootLines = BOOT_KEYS.map((key) => (key === "" ? "" : t(key)))
+
   return (
     <div className="fixed inset-0 bg-black z-50 flex flex-col p-6 font-mono overflow-hidden">
       <div className="flex-1 text-[#00ff00] text-xs leading-relaxed sm:text-sm">
-        {BOOT_LINES.slice(0, visibleLines).map((line, i) => (
+        {bootLines.slice(0, visibleLines).map((line, i) => (
           <div key={i} className="boot-flicker whitespace-pre">
             {line || "\u00A0"}
           </div>
         ))}
-        {visibleLines < BOOT_LINES.length && (
+        {visibleLines < BOOT_KEYS.length && (
           <span className="blink-cursor" />
         )}
       </div>
@@ -73,7 +77,7 @@ export function BootScreen({ onBootComplete }: BootScreenProps) {
       {showProgress && (
         <div className="mb-8">
           <div className="text-[#00ff00] text-xs sm:text-sm mb-2">
-            Loading ProductOS 95...
+            {t("boot.loading")}
           </div>
           <div className="w-full max-w-md h-5 bg-[#333] win95-inset p-0.5">
             <div className="h-full flex gap-0.5">
