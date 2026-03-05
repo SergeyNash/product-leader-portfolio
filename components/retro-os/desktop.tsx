@@ -218,11 +218,12 @@ export function Desktop() {
       style={{ background: "var(--win-desktop)" }}
     >
       {/* Desktop Character — hidden on mobile */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+      {!isMobile && (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src="/sergey-1.png"
         alt=""
-        className="absolute select-none pointer-events-none hidden md:block"
+        className="absolute select-none pointer-events-none"
         style={{
           bottom: "38px",
           left: "50%",
@@ -232,6 +233,7 @@ export function Desktop() {
           zIndex: 0,
         }}
       />
+      )}
 
       {/* Desktop Icons */}
       <div
@@ -275,9 +277,11 @@ export function Desktop() {
       </button>
 
       {/* Watermark — hidden on mobile */}
-      <div className="absolute bottom-12 right-4 text-white/20 text-[11px] select-none hidden md:block" style={{ zIndex: 0 }}>
-        {t("watermark")}
-      </div>
+      {!isMobile && (
+        <div className="absolute bottom-12 right-4 text-white/20 text-[11px] select-none" style={{ zIndex: 0 }}>
+          {t("watermark")}
+        </div>
+      )}
 
       {/* Windows */}
       {windows.map((win) =>
