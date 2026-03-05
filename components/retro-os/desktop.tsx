@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import Image from "next/image"
 import { useI18n } from "./i18n"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { DesktopIcon } from "./desktop-icon"
@@ -220,11 +219,10 @@ export function Desktop() {
     >
       {/* Desktop Character — hidden on mobile */}
       {!isMobile && (
-      <Image
-        src="/sergey-1.png"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/sergey-1.png`}
         alt=""
-        width={600}
-        height={900}
         className="absolute select-none pointer-events-none"
         style={{
           bottom: "38px",
@@ -234,8 +232,6 @@ export function Desktop() {
           width: "auto",
           zIndex: 0,
         }}
-        priority
-        unoptimized
       />
       )}
 
