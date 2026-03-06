@@ -36,6 +36,7 @@ const translations: Record<string, Record<Lang, string>> = {
   "icon.contact": { en: "Contact", ru: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B" },
   "icon.terminal": { en: "Terminal", ru: "\u0422\u0435\u0440\u043C\u0438\u043D\u0430\u043B" },
   "icon.recycle": { en: "Recycle Bin", ru: "\u041a\u043e\u0440\u0437\u0438\u043d\u0430" },
+  "icon.winamp": { en: "Winamp", ru: "Winamp" },
 
   // Window titles
   "win.about": { en: "About - Sergey Sinyakov", ru: "\u041E\u0431\u043E \u043C\u043D\u0435 - \u0421\u0435\u0440\u0433\u0435\u0439 \u0421\u0438\u043D\u044F\u043A\u043E\u0432" },
@@ -45,6 +46,7 @@ const translations: Record<string, Record<Lang, string>> = {
   "win.contact": { en: "Contact - Outlook Express", ru: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B - Outlook Express" },
   "win.terminal": { en: "Command Prompt", ru: "\u041A\u043E\u043C\u0430\u043D\u0434\u043D\u0430\u044F \u0441\u0442\u0440\u043E\u043A\u0430" },
   "win.recycle": { en: "Recycle Bin", ru: "\u041a\u043e\u0440\u0437\u0438\u043d\u0430" },
+  "win.winamp": { en: "Winamp 2.95", ru: "Winamp 2.95" },
 
   // Start menu
   "start.about": { en: "About Me", ru: "\u041E\u0431\u043E \u043C\u043D\u0435" },

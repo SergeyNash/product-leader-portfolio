@@ -116,6 +116,25 @@ export function WindowsLogoIcon({ size = 20 }: { size?: number }) {
   )
 }
 
+export function WinampIcon({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+      {/* Screen */}
+      <rect x="2" y="4" width="28" height="22" fill="#000000" />
+      <rect x="4" y="6" width="24" height="18" fill="#001a00" />
+      {/* Equalizer bars */}
+      <rect x="6" y="14" width="3" height="8" fill="#00ff00" />
+      <rect x="10" y="10" width="3" height="12" fill="#00ff00" />
+      <rect x="14" y="12" width="3" height="10" fill="#00cc00" />
+      <rect x="18" y="8" width="3" height="14" fill="#ffaa00" />
+      <rect x="22" y="13" width="3" height="9" fill="#00ff00" />
+      {/* Base */}
+      <rect x="8" y="26" width="16" height="3" fill="#404040" />
+      <rect x="6" y="29" width="20" height="1" fill="#808080" />
+    </svg>
+  )
+}
+
 export function RecycleBinIcon({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
