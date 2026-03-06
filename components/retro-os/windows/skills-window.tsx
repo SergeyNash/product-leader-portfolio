@@ -73,10 +73,10 @@ function SkillBar({ name, level }: { name: string; level: number }) {
   const color = level >= 90 ? "#00FF00" : level >= 70 ? "#FFFF00" : "#00BFFF"
 
   return (
-    <div className="flex items-center gap-2 text-[11px]">
-      <span className="w-[160px] shrink-0 truncate">{name}</span>
-      <div className="flex-1 h-4 bg-[#404040] win95-inset flex items-center px-[2px]">
-        <div className="flex gap-[2px] h-[10px] w-full">
+    <div className="flex items-center gap-3 text-[16px]">
+      <span className="w-[240px] shrink-0 truncate">{name}</span>
+      <div className="flex-1 h-6 bg-[#404040] win95-inset flex items-center px-[3px]">
+        <div className="flex gap-[3px] h-[15px] w-full">
           {Array.from({ length: totalBlocks }).map((_, i) => (
             <div
               key={i}
@@ -89,7 +89,7 @@ function SkillBar({ name, level }: { name: string; level: number }) {
           ))}
         </div>
       </div>
-      <span className="w-8 text-right text-[10px] text-[#808080] shrink-0">{level}%</span>
+      <span className="w-12 text-right text-[15px] text-[#808080] shrink-0">{level}%</span>
     </div>
   )
 }
@@ -101,11 +101,11 @@ export function SkillsWindow() {
   return (
     <div className="h-full flex flex-col text-black">
       {/* Tabs */}
-      <div className="flex bg-[#c0c0c0] px-1 pt-1">
+      <div className="flex bg-[#c0c0c0] px-1.5 pt-1.5">
         {SKILL_CATEGORIES.map((cat, i) => (
           <button
             key={cat.nameKey}
-            className={`px-3 py-1 text-[11px] border-t border-l border-r relative ${
+            className={`px-4 py-1.5 text-[16px] border-t border-l border-r relative ${
               activeTab === i
                 ? "bg-white border-[#808080] -mb-px z-10 font-bold"
                 : "bg-[#c0c0c0] border-[#808080] text-[#808080]"
@@ -118,30 +118,30 @@ export function SkillsWindow() {
       </div>
 
       {/* Tab content */}
-      <div className="flex-1 bg-white border border-[#808080] m-1 p-3 overflow-y-auto win95-scrollbar">
-        <div className="mb-3 p-2 bg-black text-[#00ff00] font-mono text-[11px]">
+      <div className="flex-1 bg-white border border-[#808080] m-1.5 p-4 overflow-y-auto win95-scrollbar">
+        <div className="mb-4 p-3 bg-black text-[#00ff00] font-mono text-[16px]">
           <span className="text-[#808080]">
             {SKILL_CATEGORIES[activeTab].icon}
           </span>{" "}
           dir /s *.skill
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           {SKILL_CATEGORIES[activeTab].skills.map((skill) => (
             <SkillBar key={skill.name.en} name={skill.name[lang]} level={skill.level} />
           ))}
         </div>
 
         {/* Legend */}
-        <div className="mt-4 pt-2 border-t border-[#c0c0c0] flex gap-4 text-[9px] text-[#808080]">
-          <span className="flex items-center gap-1">
-            <span className="w-2 h-2 bg-[#00FF00] inline-block" /> {t("skills.expert")}
+        <div className="mt-6 pt-3 border-t border-[#c0c0c0] flex gap-6 text-[14px] text-[#808080]">
+          <span className="flex items-center gap-1.5">
+            <span className="w-3 h-3 bg-[#00FF00] inline-block" /> {t("skills.expert")}
           </span>
-          <span className="flex items-center gap-1">
-            <span className="w-2 h-2 bg-[#FFFF00] inline-block" /> {t("skills.advanced")}
+          <span className="flex items-center gap-1.5">
+            <span className="w-3 h-3 bg-[#FFFF00] inline-block" /> {t("skills.advanced")}
           </span>
-          <span className="flex items-center gap-1">
-            <span className="w-2 h-2 bg-[#00BFFF] inline-block" /> {t("skills.proficient")}
+          <span className="flex items-center gap-1.5">
+            <span className="w-3 h-3 bg-[#00BFFF] inline-block" /> {t("skills.proficient")}
           </span>
         </div>
       </div>

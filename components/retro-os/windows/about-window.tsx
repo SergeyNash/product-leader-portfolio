@@ -28,40 +28,40 @@ export function AboutWindow() {
     : "Product leader with 18 years of experience building B2B/Enterprise platforms and hybrid B2B2C solutions in cybersecurity, fintech (insurance), and industrial automation. Combines engineering depth (architecture, system design) with P&L management and product metrics. Specializes in building processes from Customer Discovery to GTM in complex regulated industries. Actively implements AI tools (LLM) to accelerate analytics, hypothesis generation, and team routine automation."
 
   return (
-    <div className="p-4 text-[12px] leading-relaxed text-black">
+    <div className="p-6 text-[18px] leading-relaxed text-black">
       {/* Header */}
-      <div className="flex items-start gap-4 mb-4 pb-3 border-b-2 border-[#808080]">
-        <div className="w-16 h-16 flex items-center justify-center bg-[#008080] win95-inset p-1 shrink-0">
-          <UserIcon size={48} />
+      <div className="flex items-start gap-6 mb-6 pb-4 border-b-2 border-[#808080]">
+        <div className="w-24 h-24 flex items-center justify-center bg-[#008080] win95-inset p-1.5 shrink-0">
+          <UserIcon size={72} />
         </div>
         <div>
-          <h1 className="text-lg font-bold text-[#000080]">{t("about.name")}</h1>
-          <p className="text-[13px] font-bold">{t("about.title")}</p>
-          <p className="text-[11px] text-[#808080]">{t("about.location")}</p>
-          <p className="text-[11px] text-[#808080]">{t("about.english")}</p>
+          <h1 className="text-[27px] font-bold text-[#000080]">{t("about.name")}</h1>
+          <p className="text-[20px] font-bold">{t("about.title")}</p>
+          <p className="text-[16px] text-[#808080]">{t("about.location")}</p>
+          <p className="text-[16px] text-[#808080]">{t("about.english")}</p>
         </div>
       </div>
 
       {/* Summary */}
-      <div className="mb-4 p-3 bg-[#FFFFCC] win95-inset">
-        <p className="font-bold text-[11px] mb-1 text-[#000080]">{t("about.sysinfo")}</p>
-        <p className="text-[11px] leading-relaxed">{summary}</p>
+      <div className="mb-6 p-4 bg-[#FFFFCC] win95-inset">
+        <p className="font-bold text-[16px] mb-1.5 text-[#000080]">{t("about.sysinfo")}</p>
+        <p className="text-[16px] leading-relaxed">{summary}</p>
       </div>
 
       {/* Competencies */}
       <div>
-        <p className="font-bold text-[12px] mb-2 text-[#000080]">
+        <p className="font-bold text-[18px] mb-3 text-[#000080]">
           {t("about.competencies")}
         </p>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           {competencies.map((comp) => (
-            <div key={comp.label} className="flex items-start gap-2">
+            <div key={comp.label} className="flex items-start gap-3">
               <div className="mt-0.5 shrink-0">
-                <StarIcon size={12} />
+                <StarIcon size={18} />
               </div>
               <div>
-                <span className="font-bold text-[11px]">{comp.label}: </span>
-                <span className="text-[11px] text-[#404040]">{comp.desc}</span>
+                <span className="font-bold text-[16px]">{comp.label}: </span>
+                <span className="text-[16px] text-[#404040]">{comp.desc}</span>
               </div>
             </div>
           ))}
@@ -69,8 +69,8 @@ export function AboutWindow() {
       </div>
 
       {/* Fun stats */}
-      <div className="mt-4 pt-3 border-t-2 border-[#808080]">
-        <p className="text-[10px] text-[#808080]">
+      <div className="mt-6 pt-4 border-t-2 border-[#808080]">
+        <p className="text-[15px] text-[#808080]">
           {t("about.uptime")}
         </p>
       </div>

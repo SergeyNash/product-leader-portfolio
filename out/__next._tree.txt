@@ -1,0 +1,2 @@
+:HL["/product-leader-portfolio/_next/static/chunks/d2dfb421bba5938e.css","style"]
+0:{"buildId":"wJpGL5Ha4Cx24BQhTKAVe","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

@@ -99,35 +99,35 @@ export function Window({
         className={`win95-title-bar ${!isActive ? "win95-title-bar-inactive" : ""} shrink-0 ${isMobile ? "cursor-default" : "cursor-grab active:cursor-grabbing"}`}
         onMouseDown={handleMouseDown}
       >
-        {icon && <span className="mr-1.5 flex items-center">{icon}</span>}
-        <span className="flex-1 truncate text-[11px] font-bold">{title}</span>
-        <div className="flex gap-0.5 ml-2">
+        {icon && <span className="mr-2 flex items-center">{icon}</span>}
+        <span className="flex-1 truncate text-[16px] font-bold">{title}</span>
+        <div className="flex gap-1 ml-3">
           {!isMobile && (
             <>
               <button
-                className="win95-button !p-0 w-4 h-3.5 flex items-center justify-center text-[8px] leading-none"
+                className="win95-button !p-0 w-6 h-[21px] flex items-center justify-center text-[12px] leading-none"
                 onClick={(e) => {
                   e.stopPropagation()
                   onMinimize()
                 }}
                 aria-label="Minimize"
               >
-                <span className="block w-1.5 h-px bg-black mt-1" />
+                <span className="block w-2.5 h-px bg-black mt-1.5" />
               </button>
               <button
-                className="win95-button !p-0 w-4 h-3.5 flex items-center justify-center text-[8px] leading-none"
+                className="win95-button !p-0 w-6 h-[21px] flex items-center justify-center text-[12px] leading-none"
                 onClick={(e) => {
                   e.stopPropagation()
                   setIsMaximized(!isMaximized)
                 }}
                 aria-label="Maximize"
               >
-                <span className="block w-2 h-2 border border-black" />
+                <span className="block w-3 h-3 border border-black" />
               </button>
             </>
           )}
           <button
-            className={`win95-button !p-0 flex items-center justify-center leading-none font-bold ${isMobile ? "w-8 h-7 text-[12px]" : "w-4 h-3.5 text-[9px]"}`}
+            className={`win95-button !p-0 flex items-center justify-center leading-none font-bold ${isMobile ? "w-8 h-7 text-[12px]" : "w-6 h-[21px] text-[14px]"}`}
             onClick={(e) => {
               e.stopPropagation()
               onClose()
@@ -141,30 +141,30 @@ export function Window({
 
       {/* Menu Bar — hidden on mobile */}
       {!isMobile && (
-        <div className="flex gap-3 px-2 py-0.5 text-[11px] border-b border-[#808080] bg-[#c0c0c0] shrink-0">
-          <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">
+        <div className="flex gap-4 px-3 py-1 text-[16px] border-b border-[#808080] bg-[#c0c0c0] shrink-0">
+          <span className="hover:bg-[#000080] hover:text-white px-1.5 cursor-default">
             <span className="underline">F</span>ile
           </span>
-          <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">
+          <span className="hover:bg-[#000080] hover:text-white px-1.5 cursor-default">
             <span className="underline">E</span>dit
           </span>
-          <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">
+          <span className="hover:bg-[#000080] hover:text-white px-1.5 cursor-default">
             <span className="underline">V</span>iew
           </span>
-          <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">
+          <span className="hover:bg-[#000080] hover:text-white px-1.5 cursor-default">
             <span className="underline">H</span>elp
           </span>
         </div>
       )}
 
       {/* Content Area */}
-      <div className="flex-1 overflow-auto win95-inset m-1 bg-white win95-scrollbar">
+      <div className="flex-1 overflow-auto win95-inset m-1.5 bg-white win95-scrollbar">
         {children}
       </div>
 
       {/* Status Bar — hidden on mobile */}
       {!isMobile && (
-        <div className="win95-inset mx-1 mb-1 px-2 py-0.5 text-[10px] text-[#808080] shrink-0">
+        <div className="win95-inset mx-1.5 mb-1.5 px-3 py-1 text-[15px] text-[#808080] shrink-0">
           Ready
         </div>
       )}

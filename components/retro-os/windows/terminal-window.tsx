@@ -144,7 +144,7 @@ export function TerminalWindow() {
 
   return (
     <div
-      className="h-full bg-black text-[#c0c0c0] font-mono p-2 text-[11px] overflow-y-auto cursor-text win95-scrollbar"
+      className="h-full bg-black text-[#c0c0c0] font-mono p-3 text-[16px] overflow-y-auto cursor-text win95-scrollbar"
       onClick={() => inputRef.current?.focus()}
     >
       {lines.map((line, i) => (
@@ -156,11 +156,11 @@ export function TerminalWindow() {
         </div>
       ))}
       <div className="flex items-center">
-        <span className="text-white mr-1">{"C:\\>"}</span>
+        <span className="text-white mr-1.5">{"C:\\>"}</span>
         <input
           ref={inputRef}
           type="text"
-          className="flex-1 bg-transparent border-none outline-none text-white text-[11px] font-mono caret-white"
+          className="flex-1 bg-transparent border-none outline-none text-white text-[16px] font-mono caret-white"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {

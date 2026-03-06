@@ -39,7 +39,7 @@ const INITIAL_WINDOWS: WindowState[] = [
     isMinimized: false,
     zIndex: 1,
     defaultPosition: { x: 80, y: 30 },
-    defaultSize: { width: 520, height: 480 },
+    defaultSize: { width: 780, height: 720 },
   },
   {
     id: "career",
@@ -48,7 +48,7 @@ const INITIAL_WINDOWS: WindowState[] = [
     isMinimized: false,
     zIndex: 1,
     defaultPosition: { x: 120, y: 50 },
-    defaultSize: { width: 620, height: 440 },
+    defaultSize: { width: 930, height: 660 },
   },
   {
     id: "skills",
@@ -57,7 +57,7 @@ const INITIAL_WINDOWS: WindowState[] = [
     isMinimized: false,
     zIndex: 1,
     defaultPosition: { x: 160, y: 70 },
-    defaultSize: { width: 540, height: 420 },
+    defaultSize: { width: 810, height: 630 },
   },
   {
     id: "education",
@@ -66,7 +66,7 @@ const INITIAL_WINDOWS: WindowState[] = [
     isMinimized: false,
     zIndex: 1,
     defaultPosition: { x: 200, y: 40 },
-    defaultSize: { width: 460, height: 440 },
+    defaultSize: { width: 690, height: 660 },
   },
   {
     id: "contact",
@@ -75,7 +75,7 @@ const INITIAL_WINDOWS: WindowState[] = [
     isMinimized: false,
     zIndex: 1,
     defaultPosition: { x: 240, y: 60 },
-    defaultSize: { width: 440, height: 460 },
+    defaultSize: { width: 660, height: 690 },
   },
   {
     id: "terminal",
@@ -84,7 +84,7 @@ const INITIAL_WINDOWS: WindowState[] = [
     isMinimized: false,
     zIndex: 1,
     defaultPosition: { x: 100, y: 80 },
-    defaultSize: { width: 520, height: 340 },
+    defaultSize: { width: 780, height: 510 },
   },
 ]
 
