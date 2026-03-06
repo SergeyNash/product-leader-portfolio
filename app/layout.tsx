@@ -5,7 +5,6 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Sergey Sinyakov | CPO / Head of Product',
   description: 'Product leader with 18 years of experience building B2B/Enterprise platforms. Interactive retro portfolio.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
