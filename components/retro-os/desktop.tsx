@@ -13,6 +13,7 @@ import {
   MailIcon,
   NotepadIcon,
   TerminalIcon,
+  RecycleBinIcon,
 } from "./icons"
 import { AboutWindow } from "./windows/about-window"
 import { CareerWindow } from "./windows/career-window"
@@ -20,6 +21,7 @@ import { SkillsWindow } from "./windows/skills-window"
 import { ContactWindow } from "./windows/contact-window"
 import { EducationWindow } from "./windows/education-window"
 import { TerminalWindow } from "./windows/terminal-window"
+import { RecycleBinWindow } from "./windows/recycle-bin-window"
 
 interface WindowState {
   id: string
@@ -86,6 +88,15 @@ const INITIAL_WINDOWS: WindowState[] = [
     defaultPosition: { x: 100, y: 80 },
     defaultSize: { width: 780, height: 510 },
   },
+  {
+    id: "recycle",
+    titleKey: "win.recycle",
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    defaultPosition: { x: 300, y: 80 },
+    defaultSize: { width: 660, height: 420 },
+  },
 ]
 
 const ICON_KEYS = [
@@ -111,6 +122,8 @@ function getWindowContent(id: string) {
       return <EducationWindow />
     case "terminal":
       return <TerminalWindow />
+    case "recycle":
+      return <RecycleBinWindow />
     default:
       return null
   }
@@ -130,6 +143,8 @@ function getWindowIcon(id: string) {
       return <NotepadIcon size={14} />
     case "terminal":
       return <TerminalIcon size={14} />
+    case "recycle":
+      return <RecycleBinIcon size={14} />
     default:
       return null
   }
@@ -252,6 +267,20 @@ export function Desktop() {
           />
         ))}
       </div>
+
+      {/* Recycle Bin Icon — bottom-left, above taskbar, desktop only */}
+      {!isMobile && (
+        <div
+          className="absolute left-3"
+          style={{ bottom: "46px", zIndex: 1 }}
+        >
+          <DesktopIcon
+            label={t("icon.recycle")}
+            icon={<RecycleBinIcon />}
+            onDoubleClick={() => openWindow("recycle")}
+          />
+        </div>
+      )}
 
       {/* Language Toggle */}
       <button

@@ -35,6 +35,7 @@ const translations: Record<string, Record<Lang, string>> = {
   "icon.education": { en: "Education", ru: "\u041E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u043D\u0438\u0435" },
   "icon.contact": { en: "Contact", ru: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B" },
   "icon.terminal": { en: "Terminal", ru: "\u0422\u0435\u0440\u043C\u0438\u043D\u0430\u043B" },
+  "icon.recycle": { en: "Recycle Bin", ru: "\u041a\u043e\u0440\u0437\u0438\u043d\u0430" },
 
   // Window titles
   "win.about": { en: "About - Sergey Sinyakov", ru: "\u041E\u0431\u043E \u043C\u043D\u0435 - \u0421\u0435\u0440\u0433\u0435\u0439 \u0421\u0438\u043D\u044F\u043A\u043E\u0432" },
@@ -43,6 +44,7 @@ const translations: Record<string, Record<Lang, string>> = {
   "win.education": { en: "Education & Certificates", ru: "\u041E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u043D\u0438\u0435 \u0438 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u044B" },
   "win.contact": { en: "Contact - Outlook Express", ru: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B - Outlook Express" },
   "win.terminal": { en: "Command Prompt", ru: "\u041A\u043E\u043C\u0430\u043D\u0434\u043D\u0430\u044F \u0441\u0442\u0440\u043E\u043A\u0430" },
+  "win.recycle": { en: "Recycle Bin", ru: "\u041a\u043e\u0440\u0437\u0438\u043d\u0430" },
 
   // Start menu
   "start.about": { en: "About Me", ru: "\u041E\u0431\u043E \u043C\u043D\u0435" },
@@ -118,6 +120,22 @@ const translations: Record<string, Record<Lang, string>> = {
 
   // Watermark
   "watermark": { en: "ProductOS 95 Build 2025.03", ru: "ProductOS 95 Build 2025.03" },
+
+  // Recycle Bin
+  "recycle.toolbar.empty": { en: "Empty Recycle Bin", ru: "\u041e\u0447\u0438\u0441\u0442\u0438\u0442\u044c \u043a\u043e\u0440\u0437\u0438\u043d\u0443" },
+  "recycle.col.name": { en: "Name", ru: "\u0418\u043c\u044f" },
+  "recycle.col.location": { en: "Original Location", ru: "\u041e\u0442\u043a\u0443\u0434\u0430" },
+  "recycle.col.date": { en: "Date Deleted", ru: "\u0414\u0430\u0442\u0430 \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u044f" },
+  "recycle.col.size": { en: "Size", ru: "\u0420\u0430\u0437\u043c\u0435\u0440" },
+  "recycle.status": { en: "6 objects | 3.6 MB", ru: "6 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 | 3.6 \u041c\u0411" },
+  "recycle.confirm.title": { en: "Confirm File Delete", ru: "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u0435" },
+  "recycle.confirm.text": { en: "Are you sure you want to permanently delete all items in the Recycle Bin?", ru: "\u0412\u044b \u0443\u0432\u0435\u0440\u0435\u043d\u044b, \u0447\u0442\u043e \u0445\u043e\u0442\u0438\u0442\u0435 \u043d\u0430\u0432\u0441\u0435\u0433\u0434\u0430 \u0443\u0434\u0430\u043b\u0438\u0442\u044c \u0432\u0441\u0435 \u0444\u0430\u0439\u043b\u044b \u0438\u0437 \u043a\u043e\u0440\u0437\u0438\u043d\u044b?" },
+  "recycle.confirm.yes": { en: "Yes", ru: "\u0414\u0430" },
+  "recycle.confirm.no": { en: "No", ru: "\u041d\u0435\u0442" },
+  "recycle.error.title": { en: "Cannot Delete", ru: "\u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u0443\u0434\u0430\u043b\u0438\u0442\u044c" },
+  "recycle.error.text": { en: "ERROR: Cannot delete. 'stakeholder_wishlist_unlimited.xlsx' is protected by Stakeholder.exe", ru: "\u041e\u0428\u0418\u0411\u041a\u0410: \u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u0443\u0434\u0430\u043b\u0438\u0442\u044c. \u0424\u0430\u0439\u043b 'stakeholder_wishlist_unlimited.xlsx' \u0437\u0430\u0449\u0438\u0449\u0451\u043d \u043f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u043c Stakeholder.exe" },
+  "recycle.error.ok": { en: "OK", ru: "OK" },
+  "recycle.hint": { en: "Click a file to learn its story", ru: "\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043d\u0430 \u0444\u0430\u0439\u043b, \u0447\u0442\u043e\u0431\u044b \u0443\u0437\u043d\u0430\u0442\u044c \u0435\u0433\u043e \u0438\u0441\u0442\u043e\u0440\u0438\u044e" },
 }
 
 const I18nContext = createContext<I18nContextType>({

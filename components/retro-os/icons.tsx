@@ -116,6 +116,30 @@ export function WindowsLogoIcon({ size = 20 }: { size?: number }) {
   )
 }
 
+export function RecycleBinIcon({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+      {/* Bin body */}
+      <rect x="6" y="13" width="20" height="16" fill="#808080" />
+      <rect x="8" y="15" width="16" height="12" fill="#C0C0C0" />
+      {/* Bin lid */}
+      <rect x="4" y="10" width="24" height="4" fill="#808080" />
+      <rect x="12" y="7" width="8" height="4" fill="#808080" />
+      <rect x="13" y="8" width="6" height="2" fill="#C0C0C0" />
+      {/* Vertical lines on bin */}
+      <rect x="11" y="15" width="2" height="10" fill="#808080" />
+      <rect x="15" y="15" width="2" height="10" fill="#808080" />
+      <rect x="19" y="15" width="2" height="10" fill="#808080" />
+      {/* Papers sticking out */}
+      <rect x="9" y="8" width="5" height="6" fill="#FFFFF0" />
+      <rect x="10" y="9" width="3" height="1" fill="#808080" />
+      <rect x="10" y="11" width="4" height="1" fill="#808080" />
+      <rect x="18" y="7" width="6" height="5" fill="#FFFACD" transform="rotate(8 18 7)" />
+      <rect x="19" y="8" width="4" height="1" fill="#808080" transform="rotate(8 18 7)" />
+    </svg>
+  )
+}
+
 export function TerminalIcon({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
