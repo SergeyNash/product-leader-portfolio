@@ -15,6 +15,7 @@ import {
   TerminalIcon,
   RecycleBinIcon,
   WinampIcon,
+  MinesweeperIcon,
 } from "./icons"
 import { AboutWindow } from "./windows/about-window"
 import { CareerWindow } from "./windows/career-window"
@@ -24,6 +25,7 @@ import { EducationWindow } from "./windows/education-window"
 import { TerminalWindow } from "./windows/terminal-window"
 import { RecycleBinWindow } from "./windows/recycle-bin-window"
 import { WinampWindow } from "./windows/winamp-window"
+import { MinesweeperWindow } from "./windows/minesweeper-window"
 
 interface WindowState {
   id: string
@@ -108,6 +110,15 @@ const INITIAL_WINDOWS: WindowState[] = [
     defaultPosition: { x: 420, y: 60 },
     defaultSize: { width: 310, height: 460 },
   },
+  {
+    id: "minesweeper",
+    titleKey: "win.minesweeper",
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 1,
+    defaultPosition: { x: 340, y: 30 },
+    defaultSize: { width: 350, height: 510 },
+  },
 ]
 
 const ICON_KEYS = [
@@ -118,6 +129,7 @@ const ICON_KEYS = [
   { id: "contact", labelKey: "icon.contact", icon: <MailIcon /> },
   { id: "terminal", labelKey: "icon.terminal", icon: <TerminalIcon /> },
   { id: "winamp", labelKey: "icon.winamp", icon: <WinampIcon /> },
+  { id: "minesweeper", labelKey: "icon.minesweeper", icon: <MinesweeperIcon /> },
 ]
 
 function getWindowContent(id: string) {
@@ -138,6 +150,8 @@ function getWindowContent(id: string) {
       return <RecycleBinWindow />
     case "winamp":
       return <WinampWindow />
+    case "minesweeper":
+      return <MinesweeperWindow />
     default:
       return null
   }
@@ -161,6 +175,8 @@ function getWindowIcon(id: string) {
       return <RecycleBinIcon size={14} />
     case "winamp":
       return <WinampIcon size={14} />
+    case "minesweeper":
+      return <MinesweeperIcon size={14} />
     default:
       return null
   }

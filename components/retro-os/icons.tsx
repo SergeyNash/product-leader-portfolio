@@ -159,6 +159,37 @@ export function RecycleBinIcon({ size = 32 }: { size?: number }) {
   )
 }
 
+export function MinesweeperIcon({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+      {/* Grid background */}
+      <rect x="2" y="2" width="28" height="28" fill="#c0c0c0" />
+      {/* Grid cells */}
+      <rect x="3" y="3" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      <rect x="12" y="3" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      <rect x="21" y="3" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      <rect x="3" y="12" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      {/* Mine in center cell */}
+      <rect x="12" y="12" width="8" height="8" fill="#c0c0c0" stroke="#808080" strokeWidth="0.5" />
+      <circle cx="16" cy="16" r="3" fill="#000000" />
+      <line x1="16" y1="11" x2="16" y2="21" stroke="#000" strokeWidth="1.5" />
+      <line x1="11" y1="16" x2="21" y2="16" stroke="#000" strokeWidth="1.5" />
+      <line x1="13" y1="13" x2="19" y2="19" stroke="#000" strokeWidth="1" />
+      <line x1="19" y1="13" x2="13" y2="19" stroke="#000" strokeWidth="1" />
+      <rect x="15" y="14" width="2" height="2" fill="#ffffff" />
+      <rect x="21" y="12" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      {/* Number 2 in a cell */}
+      <text x="22.5" y="19" fill="#007B00" fontSize="7" fontFamily="monospace" fontWeight="bold">2</text>
+      <rect x="3" y="21" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      <rect x="12" y="21" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      {/* Flag in bottom-right */}
+      <rect x="21" y="21" width="8" height="8" fill="#d4d0c8" stroke="#808080" strokeWidth="0.5" />
+      <rect x="24" y="22" width="1.5" height="7" fill="#000" />
+      <polygon points="25.5,22 29,24 25.5,26" fill="#FF0000" />
+    </svg>
+  )
+}
+
 export function TerminalIcon({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none">

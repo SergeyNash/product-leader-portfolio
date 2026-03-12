@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useI18n } from "./i18n"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { WindowsLogoIcon, UserIcon, BriefcaseIcon, ChipIcon, MailIcon, NotepadIcon, TerminalIcon } from "./icons"
+import { WindowsLogoIcon, UserIcon, BriefcaseIcon, ChipIcon, MailIcon, NotepadIcon, TerminalIcon, MinesweeperIcon } from "./icons"
 
 interface TaskbarWindow {
   id: string
@@ -25,6 +25,7 @@ const START_ITEMS_KEYS = [
   { id: "education", labelKey: "start.education", icon: <NotepadIcon size={20} /> },
   { id: "contact", labelKey: "start.contact", icon: <MailIcon size={20} /> },
   { id: "terminal", labelKey: "start.terminal", icon: <TerminalIcon size={20} /> },
+  { id: "minesweeper", labelKey: "start.minesweeper", icon: <MinesweeperIcon size={20} /> },
 ]
 
 export function Taskbar({ openWindows, onWindowClick, onStartMenuOpen }: TaskbarProps) {

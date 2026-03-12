@@ -37,6 +37,7 @@ const translations: Record<string, Record<Lang, string>> = {
   "icon.terminal": { en: "Terminal", ru: "\u0422\u0435\u0440\u043C\u0438\u043D\u0430\u043B" },
   "icon.recycle": { en: "Recycle Bin", ru: "\u041a\u043e\u0440\u0437\u0438\u043d\u0430" },
   "icon.winamp": { en: "Winamp", ru: "Winamp" },
+  "icon.minesweeper": { en: "Minesweeper", ru: "\u0421\u0430\u043f\u0451\u0440" },
 
   // Window titles
   "win.about": { en: "About - Sergey Sinyakov", ru: "\u041E\u0431\u043E \u043C\u043D\u0435 - \u0421\u0435\u0440\u0433\u0435\u0439 \u0421\u0438\u043D\u044F\u043A\u043E\u0432" },
@@ -47,6 +48,7 @@ const translations: Record<string, Record<Lang, string>> = {
   "win.terminal": { en: "Command Prompt", ru: "\u041A\u043E\u043C\u0430\u043D\u0434\u043D\u0430\u044F \u0441\u0442\u0440\u043E\u043A\u0430" },
   "win.recycle": { en: "Recycle Bin", ru: "\u041a\u043e\u0440\u0437\u0438\u043d\u0430" },
   "win.winamp": { en: "Winamp 2.95", ru: "Winamp 2.95" },
+  "win.minesweeper": { en: "Minesweeper", ru: "\u0421\u0430\u043f\u0451\u0440" },
 
   // Start menu
   "start.about": { en: "About Me", ru: "\u041E\u0431\u043E \u043C\u043D\u0435" },
@@ -55,7 +57,14 @@ const translations: Record<string, Record<Lang, string>> = {
   "start.education": { en: "Education", ru: "\u041E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u043D\u0438\u0435" },
   "start.contact": { en: "Contact", ru: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B" },
   "start.terminal": { en: "Command Prompt", ru: "\u041A\u043E\u043C\u0430\u043D\u0434\u043D\u0430\u044F \u0441\u0442\u0440\u043E\u043A\u0430" },
+  "start.minesweeper": { en: "Minesweeper", ru: "\u0421\u0430\u043f\u0451\u0440" },
   "start.shutdown": { en: "Shut Down...", ru: "\u0417\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u0435 \u0440\u0430\u0431\u043E\u0442\u044B..." },
+
+  // Minesweeper
+  "minesweeper.won": { en: "You win! \uD83C\uDF89", ru: "\u041F\u043E\u0431\u0435\u0434\u0430! \uD83C\uDF89" },
+  "minesweeper.lost": { en: "Game over!", ru: "\u0418\u0433\u0440\u0430 \u043e\u043a\u043e\u043d\u0447\u0435\u043d\u0430!" },
+  "minesweeper.restart": { en: "New game", ru: "\u041d\u043e\u0432\u0430\u044f \u0438\u0433\u0440\u0430" },
+  "minesweeper.hint": { en: "Left click \u2014 open \u00B7 Right click \u2014 flag", ru: "\u041b\u041a\u041c \u2014 \u043e\u0442\u043a\u0440\u044b\u0442\u044c \u00B7 \u041f\u041a\u041c \u2014 \u0444\u043b\u0430\u0436\u043e\u043a" },
 
   // About window
   "about.name": { en: "Sergey Sinyakov", ru: "\u0421\u0435\u0440\u0433\u0435\u0439 \u0421\u0438\u043D\u044F\u043A\u043E\u0432" },
