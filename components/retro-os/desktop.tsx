@@ -263,23 +263,8 @@ export function Desktop() {
   return (
     <div
       className="fixed inset-0 crt-effect"
-      style={{ background: "var(--win-desktop)" }}
+      style={{ background: "#008080" }}
     >
-      {/* Desktop Character — hidden on mobile */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      {!isMobile && <img
-        src={basePath + "/sergey-1.png"}
-        alt=""
-        className="absolute select-none pointer-events-none"
-        style={{
-          bottom: "38px",
-          left: "50%",
-          transform: "translateX(-25%)",
-          height: "calc(100vh - 38px)",
-          width: "auto",
-          zIndex: 0,
-        }}
-      />}
 
       {/* Desktop Icons */}
       <div
